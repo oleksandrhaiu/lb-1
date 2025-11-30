@@ -1,14 +1,15 @@
-{% extends 'products/layout.html' %}
-
-{% block title %}Наші товари{% endblock %}
-
-{% block content %}
-    <h1>Каталог товарів</h1>
-    <table border="1" cellpadding="5" cellspacing="0">
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список товарів</title>
+</head>
+<body>
+    <h1>Наші товари</h1>
+    <table border="1">
         <thead>
             <tr>
                 <th>Назва</th>
-                <th>Категорія</th>
                 <th>Ціна</th>
                 <th>Кількість</th>
             </tr>
@@ -17,11 +18,11 @@
             {% for product in products %}
             <tr>
                 <td>{{ product.title }}</td>
-                <td>{{ product.category }}</td>
-                <td>{{ product.price }} грн</td>
+                <td>{{ product.price }}</td>
                 <td>{{ product.product_qty }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-{% endblock %}
+</body>
+</html>
