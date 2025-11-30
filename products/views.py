@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from .models import Category
 
 def index(request):
-    return HttpResponse("Вітаємо! Це сторінка додатку Products.")
+    categories = Category.objects.all()
+    return HttpResponse(''.join([str(category) + '<br>' for category in categories]))
