@@ -1,15 +1,12 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 from .models import Category, Product
 
+# Обробник для сторінки категорій
+def categories(request):
+    categories_list = Category.objects.all()
+    return render(request, 'products/categories.html', {'categories': categories_list})
 
-def index(request):
-    categories = Category.objects.all()
-    products = Product.objects.all()
-
-    response_html = "<h1>Категорії:</h1>"
-    response_html += ''.join([f"- {c.title}<br>" for c in categories])
-
-    response_html += "<h1>Товари:</h1>"
-    response_html += ''.join([f"- {p.title} (Ціна: {p.price})<br>" for p in products])
-
-    return HttpResponse(response_html)
+# Обробник для сторінки товарів
+def products(request):
+    products_list = Product.objects.all()
+    return render(request, 'products/products.html', {'products': products_list})
