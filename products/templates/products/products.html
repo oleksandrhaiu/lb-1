@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Список товарів</title>
-</head>
-<body>
-    <h1>Наші товари</h1>
+{% extends 'products/layout.html' %}
+
+{% block title %}Наші товари{% endblock %}
+
+{% block content %}
+    <h1>Каталог товарів</h1>
     <table border="1">
         <thead>
             <tr>
@@ -24,5 +22,4 @@
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+{% endblock %}

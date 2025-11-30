@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Список категорій</title>
-</head>
-<body>
+{% extends 'products/layout.html' %}
+
+{% block title %}Список категорій{% endblock %}
+
+{% block content %}
     <h1>Категорії товарів</h1>
     <table border="1">
         <thead>
@@ -22,5 +20,4 @@
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+{% endblock %}
