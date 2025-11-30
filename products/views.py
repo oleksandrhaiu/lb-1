@@ -3,11 +3,9 @@ from .models import Category, Product
 
 
 def index(request):
-    # Отримуємо дані з бази
     categories = Category.objects.all()
     products = Product.objects.all()
 
-    # Формуємо рядок відповіді
     response_html = "<h1>Категорії:</h1>"
     response_html += ''.join([f"- {c.title}<br>" for c in categories])
 
