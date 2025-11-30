@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'products',
-    'orders',  # Новий додаток
+    'products', # Додаток
+    'orders',
 ]
 
 MIDDLEWARE = [
