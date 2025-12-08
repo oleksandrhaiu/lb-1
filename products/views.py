@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView  # Додали CreateView
-from django.urls import reverse_lazy  # Для перенаправлення після успіху
+from django.views.generic import ListView, CreateView, DetailView  # <--- Додали DetailView
+from django.urls import reverse_lazy
 from .models import Product, Category
-from .forms import ProductForm, CategoryForm  # Імпорт форм
+from .forms import ProductForm, CategoryForm
 
 
 class CategoryListView(ListView):
@@ -32,3 +32,8 @@ class ProductCreateView(CreateView):
     form_class = ProductForm
     template_name = 'products/product_form.html'
     success_url = reverse_lazy('products')
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'products/product_detail.html'
+    context_object_name = 'product'

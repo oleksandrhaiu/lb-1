@@ -1,0 +1,19 @@
+{% extends 'products/layout.html' %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+<div style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; max-width: 600px;">
+    <h1>{{ product.title }}</h1>
+    <p><strong>Категорія:</strong> {{ product.category }}</p>
+    <p><strong>Ціна:</strong> <span style="color: green; font-size: 1.2em;">{{ product.price }} грн</span></p>
+    <p><strong>Кількість на складі:</strong> {{ product.product_qty }} шт.</p>
+    <p><strong>Дата додавання:</strong> {{ product.created_at }}</p>
+
+    <hr>
+
+    <a href="{% url 'products' %}">
+        <button>🔙 Назад до списку</button>
+    </a>
+</div>
+{% endblock %}
