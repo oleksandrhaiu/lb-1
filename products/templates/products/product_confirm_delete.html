@@ -1,0 +1,22 @@
+{% extends 'products/layout.html' %}
+
+{% block title %}Видалення товару{% endblock %}
+
+{% block content %}
+    <div style="border: 1px solid red; padding: 20px; border-radius: 8px; max-width: 600px;">
+        <h1 style="color: red;">Увага! Видалення</h1>
+        <p>Ви дійсно хочете видалити товар <strong>"{{ product.title }}"</strong>?</p>
+        <p>Цю дію неможливо скасувати.</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" style="background-color: red; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+                Так, видалити
+            </button>
+
+            <a href="{% url 'products' %}" style="margin-left: 10px;">
+                Скасувати
+            </a>
+        </form>
+    </div>
+{% endblock %}

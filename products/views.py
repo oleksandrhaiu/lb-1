@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, DetailView, UpdateView # <--- Додано UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView # <--- Додано DeleteView
 from django.urls import reverse_lazy
 from .models import Product, Category
 from .forms import ProductForm, CategoryForm
@@ -43,3 +43,8 @@ class ProductUpdateView(UpdateView):
     form_class = ProductForm
     template_name = 'products/product_form.html'  # Використовуємо той самий шаблон, що і для створення
     success_url = reverse_lazy('products')
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'products/product_confirm_delete.html'
+    success_url = reverse_lazy('products') # Куди повертати після видалення
