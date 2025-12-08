@@ -33,6 +33,12 @@
             <a href="{% url 'product-update' product.pk %}">
                 <button style="cursor: pointer; background-color: #ffc107; border: 1px solid #d39e00;">✏️</button>
             </a>
+
+            <a href="{% url 'product-delete' product.pk %}">
+                <button style="cursor: pointer; background-color: #dc3545; color: white; border: 1px solid #bd2130;">
+                    🗑️
+                </button>
+            </a>
         </td>
     </tr>
     {% endfor %}
