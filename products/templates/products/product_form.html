@@ -1,0 +1,24 @@
+{% extends 'products/layout.html' %}
+
+{% block title %}Додавання/Редагування{% endblock %}
+
+{% block content %}
+    <h1>Заповніть форму</h1>
+    <form method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div style="margin-bottom: 15px;">
+                <label style="display:block; font-weight:bold;">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div style="color: red;">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" style="padding: 10px 20px; background: #28a745; color: white; border: none; cursor: pointer;">
+            Зберегти
+        </button>
+    </form>
+{% endblock %}

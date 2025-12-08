@@ -3,21 +3,24 @@
 {% block title %}Список категорій{% endblock %}
 
 {% block content %}
-    <h1>Категорії товарів</h1>
-    <table class="styled-table">
-        <thead>
-            <tr>
-                <th>Назва</th>
-                <th>Дата створення</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for category in categories %}
-            <tr>
-                <td>{{ category.title }}</td>
-                <td>{{ category.created_at }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<h1>Категорії товарів</h1>
+<a href="{% url 'category-create' %}">
+    <button style="margin-bottom: 15px;">+ Додати категорію</button>
+</a>
+<table class="styled-table">
+    <thead>
+    <tr>
+        <th>Назва</th>
+        <th>Дата створення</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for category in categories %}
+    <tr>
+        <td>{{ category.title }}</td>
+        <td>{{ category.created_at }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
