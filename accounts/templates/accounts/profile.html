@@ -1,0 +1,27 @@
+{% extends "accounts/layout.html" %}
+
+{% block title %}Мій профіль{% endblock %}
+
+{% block content %}
+    <div style="display: flex; gap: 20px;">
+        <div>
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+            <h3>{{ user.username }}</h3>
+            <p>{{ user.email }}</p>
+        </div>
+
+        <div style="flex-grow: 1;">
+            <h2>Налаштування профілю</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Особисті дані</legend>
+                    {{ u_form.as_p }}
+                    {{ p_form.as_p }}
+                </fieldset>
+                <br>
+                <button type="submit" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; cursor: pointer;">Оновити</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
