@@ -35,8 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'products', # Додаток
+    'products',  # Додаток
     'orders',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Налаштування для медіа (аватарки)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Налаштування пошти (листи будуть падати в термінал)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
