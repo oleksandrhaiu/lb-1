@@ -1,0 +1,58 @@
+{% extends "accounts/layout.html" %}
+
+{% block title %}Ваш кошик{% endblock %}
+
+{% block content %}
+    <h1>Ваш кошик</h1>
+
+    {% if cart|length > 0 %}
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <thead>
+            <tr style="background-color: #f8f9fa; text-align: left;">
+                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Товар</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Кількість</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Ціна за шт.</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Всього</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                {% with product=item.product %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px;">{{ product.title }}</td>
+                    <td style="padding: 10px;">
+                        <form action="{% url 'cart_add' product.id %}" method="post">
+                            {% csrf_token %}
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.update }}
+                            <input type="submit" value="Оновити">
+                        </form>
+                    </td>
+                    <td style="padding: 10px;">{{ item.price }} грн</td>
+                    <td style="padding: 10px;">{{ item.total_price }} грн</td>
+                    <td style="padding: 10px;">
+                        <a href="{% url 'cart_remove' product.id %}" style="color: red;">Видалити</a>
+                    </td>
+                </tr>
+                {% endwith %}
+            {% endfor %}
+
+            <tr style="background-color: #f8f9fa; font-weight: bold;">
+                <td colspan="3" style="padding: 10px; text-align: right;">Разом:</td>
+                <td colspan="2" style="padding: 10px;">{{ cart.get_total_price }} грн</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: right;">
+        <a href="{% url 'products' %}" style="margin-right: 15px;">Продовжити покупки</a>
+        <a href="#" style="background: green; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Оформити замовлення</a>
+    </div>
+
+    {% else %}
+        <p>Ваш кошик порожній.</p>
+        <a href="{% url 'products' %}">Перейти до покупок</a>
+    {% endif %}
+
+{% endblock %}
