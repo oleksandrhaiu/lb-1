@@ -1,19 +1,21 @@
-{% extends 'products/layout.html' %}
-
-{% block title %}{{ product.title }}{% endblock %}
-
+{% extends 'products/base.html' %}
 {% block content %}
-<div style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; max-width: 600px;">
-    <h1>{{ product.title }}</h1>
-    <p><strong>Категорія:</strong> {{ product.category }}</p>
-    <p><strong>Ціна:</strong> <span style="color: green; font-size: 1.2em;">{{ product.price }} грн</span></p>
-    <p><strong>Кількість на складі:</strong> {{ product.product_qty }} шт.</p>
-    <p><strong>Дата додавання:</strong> {{ product.created_at }}</p>
+    <div class="product-detail">
+        <h1>{{ product.title }}</h1>
 
-    <hr>
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.title }}" style="max-width: 300px;">
+        {% endif %}
 
-    <a href="{% url 'products' %}">
-        <button>🔙 Назад до списку</button>
-    </a>
-</div>
+        <p>{{ product.description }}</p>
+        <p><strong>Ціна: {{ product.price }} грн</strong></p>
+
+        <form action="{% url 'cart_add' product.id %}" method="post" style="margin-top: 20px; padding: 15px; background: #f9f9f9; border: 1px solid #eee;">
+            {% csrf_token %}
+            {{ cart_product_form }}
+            <input type="submit" value="Додати в кошик" style="background: #007bff; color: white; border: none; padding: 5px 10px; cursor: pointer;">
+        </form>
+        <br>
+        <a href="{% url 'products' %}">Назад до списку</a>
+    </div>
 {% endblock %}

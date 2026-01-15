@@ -7,6 +7,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Product, Category
 from .forms import ProductForm, CategoryForm
 
+from cart.forms import CartAddProductForm
+
 # --- READ (Перегляд доступний всім) ---
 
 class CategoryListView(ListView):
@@ -26,6 +28,12 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'products/product_detail.html'
     context_object_name = 'product'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Передаємо порожню форму в шаблон
+        context['cart_product_form'] = CartAddProductForm()
+        return context
 
 # --- CREATE, UPDATE, DELETE (Тільки для авторизованих) ---
 
