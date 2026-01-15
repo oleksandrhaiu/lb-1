@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'products',  # Додаток
     'orders',
     'accounts',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Налаштування пошти (листи будуть падати в термінал)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CART_SESSION_ID = 'cart'
+
